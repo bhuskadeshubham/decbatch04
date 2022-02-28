@@ -1,0 +1,28 @@
+package anik;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Dradanddrop {
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", Configuration.driverPath);
+		WebDriver driver =new ChromeDriver();
+		driver.get("https://www.globalsqa.com/demo-site/draganddrop/");
+		driver.manage().window().maximize();
+		Thread.sleep(2000);
+		WebElement source  = driver.findElement(By.xpath("//img[@src='images/high_tatras_min.jpg']"));
+		WebElement destination = driver.findElement(By.xpath("//div[@class='ui-widget-content ui-state-default ui-droppable']"));
+		Actions act=new Actions(driver);
+		act.moveToElement(source).perform();
+		act.clickAndHold();
+		act.moveToElement(destination).perform();
+		act.release();
+		
+		act.dragAndDrop(source,destination).perform();
+	}
+
+}
+
